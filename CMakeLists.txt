@@ -56,7 +56,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(${QT_PACKAGE_NAME} 5.7 REQUIRED COMPONENTS Core Gui Quick Widgets)
+if(${QT_PACKAGE_NAME}_VERSION VERSION_LESS "6.0")
+  find_package(${QT_PACKAGE_NAME} 5.7 REQUIRED COMPONENTS Core Gui Quick Widgets)
+else()
+  find_package(${QT_PACKAGE_NAME} 6.0 REQUIRED COMPONENTS Core Gui Quick Widgets)
+endif()
 
 if(${QT_PACKAGE_NAME}_VERSION VERSION_LESS "6.0")
   find_package(${QT_PACKAGE_NAME} QUIET COMPONENTS X11Extras)
